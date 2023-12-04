@@ -1,0 +1,122 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+# TODO: Write Documentation e.g. Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Documentation	Testing the functionality of the project page by creating, reading, updating and deleting Projects with valid and invalid credentials.
+
+# TODO: Write Precondition, Postcondition, Tags
+
+Pre Condition	Open Browser And Login or Register to GitLab 
+Post Condition	Sign Out from GitLab Or Close All Browsers
+Tags	ProjectPage, TS-3-ProjectPage (e.g. For Agile Jira project management issue reference)
+
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+# TODO: Write Project creation field variables
+
+CreateBlankProjectUrl = https://gitlab.com/projects/new#blank_project
+CreateTemplateProjectUrl = https://gitlab.com/projects/new#create_from_template
+EditTemplateProjectUrl = https://gitlab.com/laurea20231/new-project-template/edit
+ProjectNameBlank = New Project
+ProjectURL = laurea20231
+ProjectSlugBlank = new-project
+Template = Ruby on Rails
+ProjectNameTemplate = New Project Template
+ProjectSlugTemplate = new-project-template
+ProjectNameTemplateNew = New Project Template 1
+DeletProjectConfirmation = laurea20231/new-project-template
+ProjectNameFirstProject = First project
+ProjectSlugFirstProject = first-project
+Invalid_ProjectName = New Project
+Invalid_ProjectURL = laurea20231
+Invalid_ProjectSlug = new-project
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive and Negative Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create blank project
+	Create template project 
+	Update name of template project
+	Delete template project
+	Valide that message is showing Project 'First project ' was successfully created.
+
+# Negative Test examples are below write test process steps for each below test case
+
+	Create a blank project with the previous same name
+
+
+#Positive Tests
+
+Create Blank Project With Valid Credentials
+	Navigate to Create blank project page CreateBlankProjectUrl
+	Input Project name ProjectNameBlank
+	Input Project URL ProjectURL
+	Input Project slug ProjectSlugBlank
+	Create Blank Project
+	Verify Page Should Contain Project 'New Project' was successfully created
+
+Create Template Project With Valid Credentials
+	Navigate to Create from template page CreateTemplateProjectUrl
+	Select Template Template
+	Input Project name ProjectNameTemplate
+	Input Project URL ProjectURL
+	Input Project slug ProjectSlugTemplate
+	Create Template Project
+	Verify Page Should Contain The Project was successfully imported
+
+Update Name Of Template Project With Valid Credentials
+	Navigate to General Settings of New Project Template page EditTemplateProjectUrl
+	Input Project name ProjectNameTemplateNew
+	Save Changes of the Template Project
+	Verify Page Should Contain Project 'New Project Template 1' was successfully updated
+
+Delete Template Project With Valid Credentials
+	Navigate to General Settings of New Project Template 1 page EditTemplateProjectUrl
+	Expand the Tab Advanced
+	Delete Template Project
+	Input Confirmation DeletProjectConfirmation
+	Confirm the Deletion of the Template Project
+	Verify Page Should Contain Project 'Laurea2023 / New Project Template 1-deleted-52744303' will be deleted on 2023-12-11 
+
+Create Template And Valide That Message Is Showing Project 'First project' Was Successfully Created
+	Navigate to Create blank project page CreateBlankProjectUrl
+	Input Project name ProjectNameFirstProject
+	Input Project URL ProjectURL
+	Input Project slug ProjectSlugFirstProject
+	Create Blank Project 'First project'
+	Verify Page Should Contain Project 'First project' was successfully created		
+	
+
+#Negative Tests
+
+Create Blank Project With The Previous Same Name 'New Project' and Invalid Credentials
+	Navigate to Create blank project page CreateBlankProjectUrl
+	Input Project name Invalid_ProjectName
+	Input Project URL Invalid_ProjectURL
+	Input Project slug Invalid_ProjectSlug
+	Create Blank Project
+	Verify That Error Message should show Project namespace name has already been taken, Name has already been taken, Path has already been taken
+
+
+
+
+	
+	
+	
+
+
+
+

@@ -1,0 +1,83 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+#Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Documentation	Testing the functionality of the issue page by creating, reading, updating and deleting Issues.
+
+# TODO: Write Precondition and Postcondition, Tags 
+
+Pre Condition	Open Browser And Login or Register to GitLab And Create a Project
+Post Condition	Sign Out from GitLab Or Close All Browsers
+Tags	IssuePage, TS-4-IssuePage (e.g. For Agile Jira project management issue reference)
+
+
+#******************* Common Variables ********************
+
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+# TODO: Write Issue creation field variables, Updated name of the issue
+
+CreateNewIssueUrl = https://gitlab.com/laurea20231/first-project/-/issues/new
+Issue1PageUrl = https://gitlab.com/laurea20231/first-project/-/issues/1
+IssueName = Issue 1
+IssueType = Issue
+IssueNameNew = Issue 2
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create issue,
+ 	Update name of issue, 
+	Create second issue with privious updated name
+    	Delete first issue
+
+
+#Positive Tests
+
+Create New Issue With Valid Credentials
+	Navigate to New Issue page CreateNewIssueUrl
+	Input Title IssueName
+	Input Type IssueType
+	Create Issue
+	Verify Page Should Contain the created Issue 1 page
+
+Update Name Of Issue With Valid Credentials
+	Navigate to Issue 1 page Issue1PageUrl
+	Select 'Edit' 
+	Input Title IssueNameNew
+	Save Changes of the Issue
+	Verify Page Should Contain the created Issue 2 page
+
+Create Second Issue With Previous Updated Name With Valid Credentials
+	Navigate to New Issue page CreateNewIssueUrl
+	Input Title IssueNameNew
+	Input Type IssueType
+	Create Issue
+	Verify Page Should Contain the created Issue 2 page
+
+Delete The First Project
+	Navigate to the First Issue created page Issue1PageUrl
+	Select 'Issue Actions'
+	Select 'Delete Issue'
+	Confirm Deletion of Issue
+	Verify Page Should Contain The issue was successfully deleted
+
+
+	
+
+
+
+	
+	
+
+
